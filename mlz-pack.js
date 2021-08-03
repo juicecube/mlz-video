@@ -1,7 +1,7 @@
 module.exports = {
   webpack: {
-    htmlPlugin:{
-      template: './example/index.html'
-    }
-  }
-}
+    htmlPlugin: {
+      template: './example/index.html',
+    },
+  },
+};

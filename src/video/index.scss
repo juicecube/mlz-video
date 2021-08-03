@@ -1,0 +1,334 @@
+.mlz-controller-btn {
+    flex: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    overflow: visible;
+    width: 44px;
+    height: 44px;
+    color: #D8D8D8;
+}
+
+.mlz-controller-com {
+    outline: none;
+    position: relative;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    // height: 100%;
+    flex: none;
+}
+
+@keyframes mlz-bezel-fadeout {
+  0% {
+    opacity: 1
+  }
+  
+  to {
+    opacity: 0;
+    transform: scale(2)
+  }
+}
+  
+@keyframes mlz-bezel-fadeout-alt {
+  0% {
+    opacity: 1
+  }
+  
+  to {
+    opacity: 0;
+    transform: scale(2)
+  }
+}
+
+@keyframes mlz-spinner-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mlz-spinner-fade {
+  0% {
+    border-top-color: lighten(#fff, 33%);
+  }
+  20% {
+    border-top-color: lighten(#fff, 33%);
+  }
+  35% {
+    border-top-color: white;
+  }
+  60% {
+    border-top-color: lighten(#fff, 33%);
+  }
+  100% {
+    border-top-color: lighten(#fff, 33%);
+  }
+}
+
+.mlz-palyer {
+    width: 100%;
+    height: 100%;
+    display: block;
+    vertical-align: top;
+    box-sizing: border-box;
+    color: #fff;
+    position: relative;
+    font-size: 20px;
+    line-height: 1;
+    user-select: none;
+}
+
+.mlz-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.mlz-controller {
+    display: flex;
+    align-items: center;
+    visibility: visible;
+    opacity: 1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 56px 0 24px 24px;
+    transition: visibility 0.1s, opacity 0.1s;
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+
+    .mlz-controller-playing {
+        @extend .mlz-controller-com, .mlz-controller-btn;
+
+        background-image: url('./assets/playing.svg')
+    }
+
+    .mlz-controller-paused {
+        @extend .mlz-controller-com, .mlz-controller-btn;
+
+        background-image: url('./assets/paused.svg')
+    }
+
+    .mlz-controller-progress {
+        display: flex;
+        align-items: center;
+        outline: none;
+        position: relative;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        height: 4px;
+        border-radius: 4px;
+        width: calc(100% - 48px - 32px - 32px - 140px);
+
+        .mlz-controller-slider {
+            flex: auto;
+            transition: all 0.2s;
+            height: 4px;
+            outline: 0;
+            position: relative;
+            cursor: pointer;
+            padding: 0;
+            border-radius: 4px;
+            margin: 0 32px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .mlz-controller-load-progress {
+            position: absolute;
+            display: block;
+            height: 4px;
+            margin: 0;
+            padding: 0;
+            width: 0;
+            left: 0;
+            top: 0;
+            background: rgba(255, 255, 255, 0.5);
+
+            div {
+                position: absolute;
+                display: block;
+                height: 4px;
+                margin: 0;
+                padding: 0;
+                width: 0;
+                left: 0;
+                top: 0;
+                background: #fff;
+            }
+        }
+
+        .mlz-controller-control-text {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 2px;
+            margin: -2px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 2px;
+        }
+
+        .mlz-controller-play-progress-bar {
+            position: absolute;
+            display: block;
+            height: 4px;
+            margin: 0;
+            padding: 0;
+            width: 0;
+            left: 0;
+            top: 0;
+            background-color: #EB4534;;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+
+            &::before, &::after {
+                z-index: 2;
+            }
+
+            &::before {
+                content: '●';
+                display: block;
+                position: absolute;
+                top: -11px;
+                right: -10px;
+                width: 24px;
+                height: 24px;
+                font-size: 24px;
+            }
+
+            &::after {
+                visibility: hidden;
+                pointer-events: none;
+                position: absolute;
+                bottom: 176px;
+                left: 112px;
+                font-size: 32px;
+                line-height: 112px;
+                text-align: center;
+                color: #fff;
+                content: attr(data-current-time);
+                width: 310px;
+                height: 112px;
+                background: rgba(0, 0, 0, 0.7);
+                border-radius: 8px;
+            }
+
+            &:hover {
+                &::after {
+                    visibility: visible;
+                }
+            }
+        }
+    }
+    
+    .mlz-controller-timer {
+        font-size: 24px;
+        line-height: 44px;
+        color: #fff;
+    }
+}
+
+.mlz-loading {
+    // display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -114px;
+    margin-top: -96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 16px;
+    width: 228px;
+    height: 192px;
+    font-size: 16px;
+    line-height: 24px;
+
+    // .mlz-loading-icon {
+    //     border: 4px solid rgba(43, 51, 63, 0.7);
+    //     box-sizing: border-box;
+    //     background-clip: padding-box;
+    //     border-radius: 50%;
+    //     width: 54px;
+    //     height: 54px;
+    //     margin-bottom: 21px;
+
+    //     &:before,
+    //     &:after {
+    //         display: inline-block;
+    //         content: "";
+    //         position: absolute;
+    //         margin: -6px;
+    //         box-sizing: inherit;
+    //         width: inherit;
+    //         height: inherit;
+    //         border-radius: inherit;
+    //         opacity: 1;
+    //         border: inherit;
+    //         border-color: transparent;
+    //         border-top-color: white;
+    //         animation: mlz-spinner-spin 1.1s cubic-bezier(0.6, 0.2, 0, 0.8) infinite, mlz-spinner-fade 1.1s linear infinite;
+    //     }
+    // }
+
+    .mlz-loading-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        display: inline-block;
+        border-top: 3px solid #fff;
+        border-right: 3px solid transparent;
+        // animation: rotation 1s linear infinite;
+        margin: 21px;
+        animation: mlz-spinner-spin 1.1s cubic-bezier(0.6, 0.2, 0, 0.8) infinite, mlz-spinner-fade 1.1s linear infinite;
+    }
+}
+
+.mlz-bezel {
+    position: absolute;
+    visibility: visible;
+    left: 50%;
+    top: 50%;
+    width: 112px;
+    height: 112px;
+    z-index: 1;
+    margin-left: -52px;
+    margin-top: -52px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 112px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.mlz-bezel-animation {
+        animation: mlz-bezel-fadeout .5s linear 1 normal forwards;
+        // pointer-events: none;
+      }
+    
+      &.mlz-bezel-animation-alt {
+        // animation: mlz-bezel-fadeout-alt .5s linear 1 normal forwards;
+        // pointer-events: none;
+      }
+    
+      .mlz-bezel-icon {
+        width: 40px;
+        height: 48px;
+        -webkit-font-smoothing: antialiased;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+
+        &.mlz-bezel-icon-playing {
+            background-image: url('./assets/playing.svg');
+        }
+
+        &.mlz-bezel-icon-paused {
+            background-image: url('./assets/paused.svg');
+        }
+      }
+}

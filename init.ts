@@ -1,9 +1,9 @@
+const path = require('path');
+const fs = require('fs');
 const inquirer = require('inquirer');
 const colors = require('colors');
 const replace = require('replace-in-file');
-const path = require('path');
 const { mv, rm, which, exec } = require('shelljs');
-const fs = require('fs');
 
 const modifyFiles = [
   'package.json',
@@ -17,12 +17,12 @@ inquirer.prompt([
     message: '请问你的库的名字是？',
   },
 ])
-.then((answer:{libName:string}) => {
-  modifyContents(answer.libName);
-  removeInit();
-  finalize();
-  console.log(colors.cyan("OK, you're all set. Happy coding!! ;)\n"));
-});
+  .then((answer:{libName:string}) => {
+    modifyContents(answer.libName);
+    removeInit();
+    finalize();
+    console.log(colors.cyan('OK, you\'re all set. Happy coding!! ;)\n'));
+  });
 
 const modifyContents = (libName:string) => {
   console.log(colors.underline.white('Modified'));

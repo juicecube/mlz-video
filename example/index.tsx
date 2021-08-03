@@ -5,7 +5,5 @@ import * as redux from '../dist/lib/--libraryname--';
 
 redux.sayHi('hello');
 
-const App = () => {
-  return <div>app</div>;
-};
+const App = () => <div>app</div>;
 ReactDOM.render(<App/>, document.getElementById('root'));
