@@ -4,7 +4,8 @@ import './test.scss';
 
 // test postinstall会先设置libraryname
 // import { Player } from '../dist/lib/--libraryname--';
-// import { Player } from '../dist/types/index';
+import { Player } from '../dist/es/--libraryname--';
+// import { Player } from '../dist/types';
 
 export const Test = () => {
   const videoRef = useRef<any>(null);
@@ -14,15 +15,15 @@ export const Test = () => {
   const [fullscreen, setFullscreen] = useState<boolean>(false);
 
   const handleVideoonPause = () => {
-
+    console.log('handleVideoonPause');
   };
 
   const handleVideoPlay = () => {
-
+    console.log('handleVideoPlay');
   };
 
   const handleVideoTouch = () => {
-
+    console.log('handleVideoTouch');
   };
 
   // 非全屏下 进度条的长度需减去swiper的navigation

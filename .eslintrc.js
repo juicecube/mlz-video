@@ -14,5 +14,6 @@ module.exports = {
     'react/no-multi-comp': 0,
     '@typescript-eslint/naming-convention': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
+    'react-hooks/rules-of-hooks': 'error', // 检查 Hook 的规则
   },
 };

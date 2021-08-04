@@ -77,9 +77,11 @@
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
+    "@frontend/yuumi": "^0.3.8",
     "@mlz/lint": "^1.2.1",
     "@mlz/pack": "^1.1.5",
     "@rollup/plugin-commonjs": "^19.0.2",
+    "@rollup/plugin-image": "^2.1.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
     "@rollup/plugin-replace": "^2.4.2",
@@ -87,10 +89,12 @@
     "@types/jest": "^26.0.24",
     "@types/node": "^16.4.6",
     "@types/react-dom": "^17.0.9",
+    "classnames": "^2.3.1",
     "colors": "^1.4.0",
     "commitizen": "^4.2.2",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.31.0",
     "husky": "^7.0.1",
     "inquirer": "^8.1.2",
     "jest": "^27.0.6",
@@ -102,20 +106,14 @@
     "replace-in-file": "^6.2.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.55.0",
+    "rollup-plugin-node-globals": "^1.4.0",
+    "rollup-plugin-postcss": "^4.0.0",
+    "rollup-plugin-scss": "^3.0.0",
     "rollup-plugin-terser": "^5.3.1",
     "rollup-plugin-typescript2": "^0.30.0",
     "shelljs": "^0.8.4",
     "standard-version": "^9.3.1",
     "ts-jest": "^27.0.4",
     "typescript": "^4.3.5"
-  },
-  "dependencies": {
-    "@frontend/yuumi": "^0.3.8",
-    "@rollup/plugin-image": "^2.1.0",
-    "classnames": "^2.3.1",
-    "eslint": "^7.31.0",
-    "rollup-plugin-node-globals": "^1.4.0",
-    "rollup-plugin-postcss": "^4.0.0",
-    "rollup-plugin-scss": "^3.0.0"
   }
 }
