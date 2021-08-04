@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useEffect, useReducer, useRef, useImperativeHandle } from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { IPlayerProps, VideoRef, VideoStatus } from './type';
 import { initialState } from './content';
 import { reducer } from './reducer';
@@ -184,7 +184,7 @@ export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
       id="mlz-palyer"
       className="mlz-palyer">
       <video
-        className={classNames('mlz-video', className)}
+        className={classnames('mlz-video', className)}
         id="mlz-video"
         ref={videoRef}
         preload={preload}

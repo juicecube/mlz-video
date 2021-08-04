@@ -129,7 +129,7 @@ export const Slider = forwardRef((
 
   return (
     <div
-      // className={classNames(
+      // className={classnames(
       //     {
       //         'mlz-controller-slider-sliding': active
       //     },

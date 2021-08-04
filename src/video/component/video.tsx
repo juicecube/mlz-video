@@ -1,5 +1,5 @@
 import React, { forwardRef, useImperativeHandle, useRef, ForwardedRef, useEffect, useCallback } from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { IVideoProps, VideoRef, VideoStatus } from '../type';
 import '../index.scss';
 
@@ -43,7 +43,7 @@ export const Video = forwardRef<VideoRef | ForwardedRef<HTMLVideoElement>, IVide
 
   return (
     <video
-      className={classNames('mlz-video', className)}
+      className={classnames('mlz-video', className)}
       id="mlz-video"
       ref={videoRef}
       preload={preload}

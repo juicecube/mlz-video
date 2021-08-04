@@ -1,8 +1,12 @@
 import React, { useRef, useState } from 'react';
-import { Player } from '../src/index';
+// import { Player } from '../src/index';
 import './test.scss';
 
-const Test = () => {
+// test postinstall会先设置libraryname
+// import { Player } from '../dist/lib/--libraryname--';
+// import { Player } from '../dist/types/index';
+
+export const Test = () => {
   const videoRef = useRef<any>(null);
   const videoUrl = 'https://online-education.codemao.cn/444/162142647511721.mp4';
   const videoImgUrl = `${videoUrl}?vframe/jpg/offset/1/w/750/h/562`;
@@ -25,6 +29,8 @@ const Test = () => {
   const progressStyle = {
     width: 'calc(100% - 24px - 16px - 16px - 70px - 16px - 20px)',
   };
+
+  console.log('render', Player);
 
   return (
     <div className="test">

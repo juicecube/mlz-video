@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// test postinstall会先设置libraryname
-import * as redux from '../dist/lib/--libraryname--';
+import { Test } from '../test/index.test';
 
-redux.sayHi('hello');
+import { setHtmlFont } from './util';
 
-const App = () => <div>app</div>;
+setHtmlFont();
+
+const App = () => <div><Test /></div>;
 ReactDOM.render(<App/>, document.getElementById('root'));

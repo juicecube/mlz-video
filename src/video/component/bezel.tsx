@@ -1,7 +1,7 @@
 import React, { useState, useRef, FC, useEffect } from 'react';
 
 import '../index.scss';
-// import classNames from 'classnames';
+// import classnames from 'classnames';
 
 import { BezelProps, VideoStatus } from '../type';
 
@@ -58,7 +58,7 @@ export const Bezel:FC<BezelProps> = ({ state: { status, isActive }, onPause, onP
   return (
     <div
       // bezel 的动效
-      // className={classNames(
+      // className={classnames(
       //   'mlz-bezel',
       //   {
       //     'mlz-bezel-animation-alt': click,
