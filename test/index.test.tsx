@@ -3,8 +3,8 @@ import React, { useRef, useState } from 'react';
 import './test.scss';
 
 // test postinstall会先设置libraryname
-// import { Player } from '../dist/lib/--libraryname--';
-import { Player } from '../dist/es/--libraryname--';
+// import { Player } from '../dist/lib/mlz-video';
+import { Player } from '../dist/es/mlz-video';
 // import { Player } from '../dist/types';
 
 export const Test = () => {
