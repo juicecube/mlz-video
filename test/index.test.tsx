@@ -4,7 +4,7 @@ import './test.scss';
 
 // test postinstall会先设置libraryname
 // import { Player } from '../dist/lib/mlz-video';
-import { Player } from '../dist/umd/mlz-video';
+import { Player } from '../dist/lib/mlz-video';
 // import { Player } from '../dist/es/mlz-video';
 // import { Player } from '../dist/types';
 

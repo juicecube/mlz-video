@@ -1,8 +1,9 @@
 import React from 'react';
+import src from './assets/close.svg';
 
 export const Player = () => <div>
     Player1
   <img
-    src={require('./assets/close.svg')}
+    src={src}
     alt=""/>
 </div>;
