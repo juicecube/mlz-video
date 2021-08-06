@@ -2,7 +2,12 @@
   "name": "mlz-video",
   "version": "1.0.0",
   "description": "",
-  "keywords": [],
+  "keywords": [
+    "video",
+    "react",
+    "react-component",
+    "rollup"
+  ],
   "pkgName": "mlz-video",
   "main": "dist/lib/mlz-video.js",
   "unpkg": "dist/umd/mlz-video.js",
@@ -14,11 +19,11 @@
   "author": "",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/juicecube/mlz-video"
   },
   "license": "MIT",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=14.0.0"
   },
   "scripts": {
     "start": "rollup -c rollup.config.js -w & npm run example",
@@ -72,6 +77,10 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",

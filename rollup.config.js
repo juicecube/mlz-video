@@ -28,9 +28,7 @@ const commonConfig = {
     json(),
     postcss({
       plugins: [
-        autoprefixer({
-          remove: false,
-        }),
+        autoprefixer(),
         pxtorem(
           {
             rootValue: 100,
