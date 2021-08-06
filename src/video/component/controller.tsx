@@ -2,9 +2,10 @@ import React, { FC } from 'react';
 import '../index.scss';
 
 import { ControllerProps, VideoStatus } from '../type';
+import playingSvg from '../assets/playing.svg';
+import pausedSvg from '../assets/paused.svg';
 import { Progress } from './progress';
 import { Timer } from './timer';
-
 
 export const Controller:FC<ControllerProps> = ({ state, onPlay, onPause, onSeekingTime, onSeek, onForward, progressStyle }) => {
   const handlePlay = () => {
@@ -34,12 +35,20 @@ export const Controller:FC<ControllerProps> = ({ state, onPlay, onPause, onSeeki
     if (state.status === VideoStatus.PLAYING) return (
       <button
         onClick={handlePuase}
-        className="mlz-controller-paused" />
+        className="mlz-controller-paused">
+        <img
+          src={pausedSvg}
+          alt=""/>
+      </button>
     );
     else return (
       <button
         onClick={handlePlay}
-        className="mlz-controller-playing"/>
+        className="mlz-controller-playing">
+        <img
+          src={playingSvg}
+          alt=""/>
+      </button>
     );
   };
 

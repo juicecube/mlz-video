@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useEffect, useReducer, useRef, useImperativeHandle } from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import { IPlayerProps, VideoRef, VideoStatus } from './type';
 import { initialState } from './content';
 import { reducer } from './reducer';
@@ -64,13 +64,14 @@ export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
   useEffect(() => {
     if (fullscreen) {
       clearTimeout(timerRef.current);
+
       dispatch({ type: 'modify', payload: { isActive: true } });
     } else {
       clearTimeout(timerRef.current);
 
       timerRef.current = setTimeout(() => {
         dispatch({ type: 'modify', payload: { isActive: false } });
-      }, 3000);
+      }, 4000);
     }
   }, [fullscreen]);
 
@@ -105,7 +106,7 @@ export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
 
   const handlePlay = useCallback(() => {
     if (videoRef.current) {
-      dispatch({ type: 'modify', payload: { status: VideoStatus.WAITING } });
+      dispatch({ type: 'modify', payload: { status: VideoStatus.WAITING, isActive: true } });
 
       const promise = videoRef.current.play();
       if (promise !== undefined) {
@@ -184,14 +185,13 @@ export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
       id="mlz-palyer"
       className="mlz-palyer">
       <video
-        className={classnames('mlz-video', className)}
+        className={classNames('mlz-video', className)}
         id="mlz-video"
         ref={videoRef}
         preload={preload}
         poster={poster}
         src={src}
         x5-video-player-type="h5-page"
-        // @ts-ignore
         playsInline
         webkit-playsinline
         x-webkit-airplay="true"
