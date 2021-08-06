@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
-// import { Player } from '../src/index';
+import { Player } from '../src/index';
 import './test.scss';
 
 // test postinstall会先设置libraryname
 // import { Player } from '../dist/rs/mlz-video';
-import { Player } from '../dist/lib/mlz-video';
+// import { Player } from '../dist/lib/mlz-video';
 // import { Player } from '../dist/types';
 
 export const Test = () => {

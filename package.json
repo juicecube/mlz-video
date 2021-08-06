@@ -97,7 +97,7 @@
     "@types/jest": "^26.0.24",
     "@types/node": "^16.4.6",
     "@types/react-dom": "^17.0.9",
-    "classnames": "^2.3.1",
+    "autoprefixer": "^9.8.6",
     "colors": "^1.4.0",
     "commitizen": "^4.2.2",
     "cross-env": "^7.0.3",
@@ -108,9 +108,8 @@
     "jest": "^27.0.6",
     "jest-config": "^27.0.6",
     "lint-staged": "^10.5.4",
+    "postcss-pxtorem": "^4.0.1",
     "prettier": "^2.3.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "replace-in-file": "^6.2.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.55.0",
@@ -125,7 +124,8 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
-    "autoprefixer": "^9.8.6",
-    "postcss-pxtorem": "^4.0.1"
+    "classnames": "^2.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }
