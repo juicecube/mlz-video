@@ -93,24 +93,20 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
     "@rollup/plugin-replace": "^2.4.2",
-    "@types/inquirer": "^7.3.3",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.4.6",
     "@types/react-dom": "^17.0.9",
     "autoprefixer": "^9.8.6",
-    "colors": "^1.4.0",
     "commitizen": "^4.2.2",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.31.0",
     "husky": "^7.0.1",
-    "inquirer": "^8.1.2",
     "jest": "^27.0.6",
     "jest-config": "^27.0.6",
     "lint-staged": "^10.5.4",
     "postcss-pxtorem": "^4.0.1",
     "prettier": "^2.3.2",
-    "replace-in-file": "^6.2.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.55.0",
     "rollup-plugin-node-globals": "^1.4.0",
@@ -125,7 +121,7 @@
   },
   "dependencies": {
     "classnames": "^2.3.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   }
 }
