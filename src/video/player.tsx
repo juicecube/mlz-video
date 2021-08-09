@@ -163,14 +163,30 @@ export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
   const handleSeek = (newTime:number) => {
     // 修改videoRef 的 currentTime，reducer的currentTime
     if (videoRef.current) {
-      dispatch({ type: 'modify', payload: { status: VideoStatus.PAUSED } });
+      // dispatch({ type: 'modify', payload: { status: VideoStatus.PAUSED } });
 
       videoRef.current.currentTime = newTime;
-      dispatch({ type: 'modify', payload: { currentTime: newTime, status: VideoStatus.PLAYING } });
+      dispatch({ type: 'modify', payload: { currentTime: newTime } });
 
       // setTimeout(() =>{
       //   dispatch({ type: 'modify', payload: { status: VideoStatus.PLAYING} })
       // }, 200)
+
+      if (status === VideoStatus.PLAYING) {
+        const promise = videoRef.current.play();
+        if (promise !== undefined) {
+          // eslint-disable-next-line promise/catch-or-return
+          promise.catch((e:any) => {
+            dispatch({ type: 'handleError' });
+            throw new Error(e);
+          }).then(() => {
+            dispatch({ type: 'handlePlaying' });
+          });
+        }
+      } else {
+        videoRef.current.pause();
+        dispatch({ type: 'handlePausing' });
+      }
     }
   };
 
@@ -193,7 +209,7 @@ export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
         src={src}
         x5-video-player-type="h5-page"
         playsInline
-        webkit-playsinline
+        webkit-playsinline="true"
         x-webkit-airplay="true"
         x5-playsinline="true"
         onDurationChange={(e) => {

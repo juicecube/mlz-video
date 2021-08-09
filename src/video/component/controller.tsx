@@ -32,24 +32,27 @@ export const Controller:FC<ControllerProps> = ({ state, onPlay, onPause, onSeeki
   };
 
   const renderBtn = () => {
-    if (state.status === VideoStatus.PLAYING) return (
-      <button
-        onClick={handlePuase}
-        className="mlz-controller-paused">
-        <img
-          src={pausedSvg}
-          alt=""/>
-      </button>
-    );
-    else return (
-      <button
-        onClick={handlePlay}
-        className="mlz-controller-playing">
-        <img
-          src={playingSvg}
-          alt=""/>
-      </button>
-    );
+    if (state.status === VideoStatus.PLAYING) {
+      return (
+        <button
+          onClick={handlePuase}
+          className="mlz-controller-paused">
+          <img
+            src={pausedSvg}
+            alt=""/>
+        </button>
+      );
+    } else {
+      return (
+        <button
+          onClick={handlePlay}
+          className="mlz-controller-playing">
+          <img
+            src={playingSvg}
+            alt=""/>
+        </button>
+      );
+    }
   };
 
   const style = state.isActive ? {} : { display: 'none' };
