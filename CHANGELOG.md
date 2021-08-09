@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.1.0 (2021-08-09)
+
+
+### Features
+
+* init ([ebaa9a5](https://github.com/juicecube/mlz-video/commit/ebaa9a5289b173a8fce31447e29406c6ff2311e4))
+* pack name ([90a5398](https://github.com/juicecube/mlz-video/commit/90a53988ad3453017f92a18e2e56c645f405f66b))
+* package ([31a03f4](https://github.com/juicecube/mlz-video/commit/31a03f40972dc342e633df7e63912df7a3f706af))
+* README.md ([54359b6](https://github.com/juicecube/mlz-video/commit/54359b669276965aa1fdfb5a3ff0bb433c612869))
+* rollup ([d01215a](https://github.com/juicecube/mlz-video/commit/d01215a05cdb39467037f271a6f5ccc3a8cc8733))
+* video ([26eb528](https://github.com/juicecube/mlz-video/commit/26eb5283f41bc461bbac5825e9115bd7aa96c3b8))
+* video ([8422974](https://github.com/juicecube/mlz-video/commit/842297485a4fef0dd31af439c329f5610909bc9b))
+* video ([232e8c1](https://github.com/juicecube/mlz-video/commit/232e8c16bc4acc9bce1857280837db6ca45bb467))
+* video ([dd6480f](https://github.com/juicecube/mlz-video/commit/dd6480f8a4f53adaaa980139a68b4f7ce8c82a33))
+
+
+### Bug Fixes
+
+* 快进or快退 ([f883bb6](https://github.com/juicecube/mlz-video/commit/f883bb6eb783f575c4d7c2b4b73e4a2e35b7a18a))
+* rollup ([a3607d3](https://github.com/juicecube/mlz-video/commit/a3607d30f2bcde3a330245ba32118bf11c3ddf8b))
+
 ### [0.0.2](https://github.com/cmao-cli/Npm-template/compare/v0.0.1...v0.0.2) (2019-12-02)
 
 
