@@ -166,7 +166,8 @@ export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
       // dispatch({ type: 'modify', payload: { status: VideoStatus.PAUSED } });
 
       videoRef.current.currentTime = newTime;
-      dispatch({ type: 'modify', payload: { currentTime: newTime } });
+      // 已经播放了，seekingTime 重置
+      dispatch({ type: 'modify', payload: { currentTime: newTime, seekingTime: 0 } });
 
       // setTimeout(() =>{
       //   dispatch({ type: 'modify', payload: { status: VideoStatus.PLAYING} })

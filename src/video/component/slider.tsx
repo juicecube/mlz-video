@@ -39,7 +39,7 @@ export const Slider = forwardRef((
   };
 
   const handleMouseUp = (event:any) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     document.removeEventListener('mousemove', handleMouseMove, true);
     document.removeEventListener('mouseup', handleMouseUp, true);
