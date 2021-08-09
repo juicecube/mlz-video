@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/juicecube/mlz-video/compare/v1.1.0...v1.1.1) (2021-08-09)
+
+
+### Bug Fixes
+
+* npm init ([bca2e6d](https://github.com/juicecube/mlz-video/commit/bca2e6d25394d3cea2b8bf6d46fa31d67426535c))
+* package-lock name ([e79a647](https://github.com/juicecube/mlz-video/commit/e79a647f733fae41116cdb8fde9e55846409972f))
+* SeekingTime ([20cea34](https://github.com/juicecube/mlz-video/commit/20cea3457622c35fd191afa80246f1ee64312543))
+
 ## 1.1.0 (2021-08-09)
 
 
