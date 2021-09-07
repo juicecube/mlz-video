@@ -6,8 +6,9 @@ import playingSvg from '../assets/playing.svg';
 import pausedSvg from '../assets/paused.svg';
 import { Progress } from './progress';
 import { Timer } from './timer';
+import { SystemFullscreen } from './systemFullscreen';
 
-export const Controller:FC<ControllerProps> = ({ state, onPlay, onPause, onSeekingTime, onSeek, onForward, progressStyle }) => {
+export const Controller:FC<ControllerProps> = ({ state, onPlay, onPause, onSeekingTime, onSeek, onForward, progressStyle, hasSystemFullscreen, onSystemFullscreen }) => {
   const handlePlay = () => {
     onPlay && onPlay();
   };
@@ -29,6 +30,11 @@ export const Controller:FC<ControllerProps> = ({ state, onPlay, onPause, onSeeki
   const handleForward = (val:number) => {
     // 快进 val 秒
     onForward && onForward(val);
+  };
+
+  const handleSystemFullscreen = () => {
+    // 控制系统全屏
+    onSystemFullscreen && onSystemFullscreen();
   };
 
   const renderBtn = () => {
@@ -72,6 +78,8 @@ export const Controller:FC<ControllerProps> = ({ state, onPlay, onPause, onSeeki
         progressStyle={progressStyle}
       />
       <Timer state={state} />
+      {hasSystemFullscreen ? <SystemFullscreen
+        onSystemFullscreen={handleSystemFullscreen} /> : null}
     </div>
   );
 };

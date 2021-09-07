@@ -11,13 +11,14 @@ import { Bezel } from './component/bezel';
 import './index.scss';
 
 export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
-  const { preload = 'metadata', poster, src, children, className, onDurationchange, onPlay, onPause, onTouch, progressStyle, fullscreen, ...rest } = props;
+  const { preload = 'metadata', poster, src, children, className, onDurationchange, onPlay, onPause, onTouch, progressStyle, fullscreen, hasSystemFullscreen = false, onSystemFullscreen, ...rest } = props;
   const videoRef = useRef<any>(null);
   const timerRef = useRef<any>(null);
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { status, currentTime, seekingTime, isActive } = state;
+  const { status, currentTime } = state;
 
+  // 暴露的api
   useImperativeHandle(ref, () => ({
     apiDoPlaying: () => {
       // if (videoRef.current) {
@@ -42,11 +43,20 @@ export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
   }, []);
 
   // 及时更新state里面的currentTime
+  // 判断播放到最后的时候，结束视频播放，且进度条回到初始值
   useEffect(() => {
     const timeupdateListener = () => {
-      const { currentTime, buffered } = videoRef.current;
+      const { currentTime, buffered, duration } = videoRef.current;
 
       dispatch({ type: 'modify', payload: { currentTime, buffered } });
+
+      // 播放到最后，结束播放
+      if (currentTime === duration) {
+        setTimeout(() => {
+          handlePause();
+          dispatch({ type: 'modify', payload: { currentTime: 0 } });
+        }, 0);
+      }
     };
 
     if(videoRef.current) {
@@ -59,6 +69,42 @@ export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
       }
     };
   }, []);
+
+  /**
+   * 监听系统全屏
+   */
+  // useEffect(() => {
+  //   const handleFullScreenChange = () => {
+  //     alert('handleFullScreenChange');
+  //     if(document.fullscreenElement === null) {
+  //       // alert('handleFullScreenChange');
+  //       // dispatch({ type: VideoTypes.QUITFULLSCREEN });
+  //     }
+  //   };
+  //   const handleIosInterval = () => {
+  //     if(videoRef.current) {
+  //       const videoCur = videoRef.current as any;
+  //       !videoCur.webkitDisplayingFullscreen;
+  //       // !videoCur.webkitDisplayingFullscreen && dispatch({ type: VideoTypes.QUITFULLSCREEN });
+  //       // !videoRef.current.webkitDisplayingFullscreen && dispatch({ type: VideoTypes.QUITFULLSCREEN });
+  //     }
+  //   };
+
+  //   // ios 无法监听到 fullscreenchange 事件，设置一个定时器检查
+  //   // const iosIntervalTimer = setInterval(handleIosInterval, 500);
+
+  //   document.addEventListener('fullscreenchange', handleFullScreenChange, false);
+  //   document.addEventListener('mozfullscreenchange', handleFullScreenChange, false);
+  //   document.addEventListener('webkitfullscreenchange', handleFullScreenChange, false);
+  //   document.addEventListener('msfullscreenchange', handleFullScreenChange, false);
+  //   return () => {
+  //     document.removeEventListener('fullscreenchange', handleFullScreenChange);
+  //     document.removeEventListener('mozfullscreenchange', handleFullScreenChange);
+  //     document.removeEventListener('webkitfullscreenchange', handleFullScreenChange);
+  //     document.removeEventListener('msfullscreenchange', handleFullScreenChange);
+  //     // clearInterval(iosIntervalTimer);
+  //   };
+  // }, []);
 
   // 全屏模式下 控件常驻
   useEffect(() => {
@@ -197,6 +243,37 @@ export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
     // dispatch({ type: 'modify', payload: { currentTime: currentTime + val } });
   };
 
+  // 进入全屏模式，不归组件方管，系统video全屏播放怎么样就怎么样。
+  const handleSystemFullscreen = () => {
+    let promise;
+    if (videoRef.current) {
+      if(videoRef.current.requestFullscreen){
+        promise = videoRef.current.requestFullscreen();
+      }else if(videoRef.current.webkitRequestFullScreen){
+        promise = videoRef.current.webkitRequestFullScreen();
+      }else if(videoRef.current.mozRequestFullScreen){
+        promise = videoRef.current.mozRequestFullScreen();
+      }else{
+        promise = videoRef.current.msRequestFullscreen();
+      }
+    }
+
+    if (promise !== undefined) {
+      // eslint-disable-next-line promise/catch-or-return
+      promise.catch((e:any) => {
+        dispatch({ type: 'handleError' });
+        throw new Error(e);
+      }).then(() => {
+        onSystemFullscreen && onSystemFullscreen();
+      });
+    }
+  };
+
+  // 进度条的ui，主要是控制进度条长度
+  // 如果是在swiper里，pagination和视频的controller同层级：非全屏模式下，swiper的pagination 占一定宽度；全屏模式下，swiper在最底下，和视频的controller不同层级
+  // 如果不是在swiper里，且需要开启系统自带全屏，则宽度需要计算是否减去「是否全屏」按钮
+  const _progressStyle = progressStyle ? progressStyle : ( hasSystemFullscreen ? { width: '201px' } : {} );
+
   return (
     <div
       id="mlz-palyer"
@@ -235,7 +312,9 @@ export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
         onForward={handleForward}
         onPlay={handlePlay}
         onPause={handlePause}
-        progressStyle={progressStyle}
+        progressStyle={_progressStyle}
+        hasSystemFullscreen={hasSystemFullscreen}
+        onSystemFullscreen={handleSystemFullscreen}
       />
     </div>
   );

@@ -53,6 +53,8 @@ export interface IPlayerProps {
     onTouch?:() => void;
     progressStyle?:CSSProperties; // 进度条样式
     fullscreen?:boolean; // 全屏
+    onSystemFullscreen?:() => void; // 点击打开/关闭系统全屏
+    hasSystemFullscreen?:boolean; // 系统全屏
 }
 
 export interface ControllerProps {
@@ -63,6 +65,8 @@ export interface ControllerProps {
     onSeek:(newTime:number) => void;
     onForward:(val:number) => void;
     progressStyle?:CSSProperties;
+    onSystemFullscreen?:() => void; // 点击打开/关闭系统全屏
+    hasSystemFullscreen?:boolean; // 是否存在系统全屏按钮
 }
 
 export interface ProgressProps {
@@ -94,4 +98,8 @@ export interface BezelProps {
     onPlay?:() => void;
     onPause?:() => void;
     // onTouch:() => void;
+}
+
+export interface SystemFullscreenProps {
+    onSystemFullscreen?:() => void; // 点击打开/关闭系统全屏
 }
