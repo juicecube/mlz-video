@@ -70,41 +70,54 @@ export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
     };
   }, []);
 
+  // 恢复播放/暂停状态
+  const recover = () => {
+    clearTimeout(timerRef.current);
+
+    if (videoRef.current) {
+      if (state.status === VideoStatus.PLAYING) {
+        dispatch({ type: 'modify', payload: { status: VideoStatus.PLAYING, isActive: true } });
+        videoRef.current.play();
+      } else {
+        dispatch({ type: 'modify', payload: { status: VideoStatus.PAUSED, isActive: true } });
+        videoRef.current.pause();
+      }
+
+      timerRef.current = setTimeout(() => {
+        dispatch({ type: 'modify', payload: { isActive: false } });
+      }, 4000);
+    }
+  };
+
   /**
    * 监听系统全屏
    */
-  // useEffect(() => {
-  //   const handleFullScreenChange = () => {
-  //     alert('handleFullScreenChange');
-  //     if(document.fullscreenElement === null) {
-  //       // alert('handleFullScreenChange');
-  //       // dispatch({ type: VideoTypes.QUITFULLSCREEN });
-  //     }
-  //   };
-  //   const handleIosInterval = () => {
-  //     if(videoRef.current) {
-  //       const videoCur = videoRef.current as any;
-  //       !videoCur.webkitDisplayingFullscreen;
-  //       // !videoCur.webkitDisplayingFullscreen && dispatch({ type: VideoTypes.QUITFULLSCREEN });
-  //       // !videoRef.current.webkitDisplayingFullscreen && dispatch({ type: VideoTypes.QUITFULLSCREEN });
-  //     }
-  //   };
+  useEffect(() => {
+    if (hasSystemFullscreen) {
+      const handleFullScreenChange = () => {
+        if(document.fullscreenElement === null) {
+          // 退出全屏时，播放/暂停 状态恢复
+          recover();
 
-  //   // ios 无法监听到 fullscreenchange 事件，设置一个定时器检查
-  //   // const iosIntervalTimer = setInterval(handleIosInterval, 500);
+          onSystemFullscreen && onSystemFullscreen();
+        }
+      };
 
-  //   document.addEventListener('fullscreenchange', handleFullScreenChange, false);
-  //   document.addEventListener('mozfullscreenchange', handleFullScreenChange, false);
-  //   document.addEventListener('webkitfullscreenchange', handleFullScreenChange, false);
-  //   document.addEventListener('msfullscreenchange', handleFullScreenChange, false);
-  //   return () => {
-  //     document.removeEventListener('fullscreenchange', handleFullScreenChange);
-  //     document.removeEventListener('mozfullscreenchange', handleFullScreenChange);
-  //     document.removeEventListener('webkitfullscreenchange', handleFullScreenChange);
-  //     document.removeEventListener('msfullscreenchange', handleFullScreenChange);
-  //     // clearInterval(iosIntervalTimer);
-  //   };
-  // }, []);
+      videoRef.current.addEventListener('fullscreenchange', handleFullScreenChange, false);
+      videoRef.current.addEventListener('mozfullscreenchange', handleFullScreenChange, false);
+      videoRef.current.addEventListener('webkitfullscreenchange', handleFullScreenChange, false);
+      videoRef.current.addEventListener('msfullscreenchange', handleFullScreenChange, false);
+
+      return () => {
+        videoRef.current.removeEventListener('fullscreenchange', handleFullScreenChange);
+        videoRef.current.removeEventListener('mozfullscreenchange', handleFullScreenChange);
+        videoRef.current.removeEventListener('webkitfullscreenchange', handleFullScreenChange);
+        videoRef.current.removeEventListener('msfullscreenchange', handleFullScreenChange);
+      };
+    }
+
+    return;
+  }, []);
 
   // 全屏模式下 控件常驻
   useEffect(() => {
@@ -253,7 +266,23 @@ export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
         promise = videoRef.current.webkitRequestFullScreen();
       }else if(videoRef.current.mozRequestFullScreen){
         promise = videoRef.current.mozRequestFullScreen();
-      }else{
+      }else if (videoRef.current.webkitEnterFullscreen){
+        // iOS进入全屏
+        promise = videoRef.current.webkitEnterFullscreen();
+
+        // 针对iOS监听不到webkitfullscreenchange事件做的兼容，感知退出全屏
+        const timer = setInterval(() => {
+          if (!videoRef.current.webkitDisplayingFullscreen) {
+            // 没办法，恶心的逻辑只能写在这里  退出了全屏
+            // 退出全屏时，播放/暂停 状态恢复
+            recover();
+
+            onSystemFullscreen && onSystemFullscreen();
+
+            clearInterval(timer);
+          }
+        }, 1000);
+      } else {
         promise = videoRef.current.msRequestFullscreen();
       }
     }

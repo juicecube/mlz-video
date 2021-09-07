@@ -15,6 +15,7 @@ export const Test = () => {
   const videoImgUrl = `${videoUrl}?vframe/jpg/offset/1/w/750/h/562`;
 
   const [fullscreen, setFullscreen] = useState<boolean>(false);
+  const [state, setState] = useState<number>(0);
 
   const handleVideoonPause = () => {
     console.log('handleVideoonPause');
@@ -36,13 +37,14 @@ export const Test = () => {
 
   const handleSystemFullscreen = () => {
     console.log('调用方 handleSystemFullscreen');
+    setState(state + 1);
   };
 
   console.log('render', Player);
 
   return (
     <div className="test">
-      {/* <p>基本型</p>
+      <p>基本型</p>
       <Player
         ref={videoRef0}
         src={videoUrl}
@@ -59,10 +61,11 @@ export const Test = () => {
         onTouch={handleVideoTouch}
         progressStyle={fullscreen ? {} : progressStyle}
         fullscreen={fullscreen}
-      /> */}
+      />
 
       <p>系统全屏</p>
       <Player
+        className="back"
         ref={videoRef2}
         src={videoUrl}
         onPause={handleVideoonPause}
@@ -72,6 +75,7 @@ export const Test = () => {
         hasSystemFullscreen
         onSystemFullscreen={handleSystemFullscreen}
       />
+      <p>{state}</p>
     </div>
   );
 };

@@ -11,6 +11,21 @@
         fullscreen={fullscreen}
     />
 ```
+```tsx
+    // 系统全屏，进入全屏后ui和交互不可控
+    // 且退出全屏后，不一定都能监听到退出事件，onSystemFullscreen不一定都护触发
+    <Player
+        className="back"
+        ref={videoRef2}
+        src={videoUrl}
+        onPause={handleVideoonPause}
+        onPlay={handleVideoPlay}
+        poster={videoImgUrl}
+        onTouch={handleVideoTouch}
+        hasSystemFullscreen
+        onSystemFullscreen={handleSystemFullscreen}
+    />    
+```
 
 
 ## npm库模版
