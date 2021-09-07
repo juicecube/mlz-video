@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/juicecube/mlz-video/compare/v1.1.1...v1.2.0) (2021-09-07)
+
+
+### Features
+
+* 系统全屏 ([c1ff8a8](https://github.com/juicecube/mlz-video/commit/c1ff8a86ebe241ee9a013a5ad6b82f43ecee7429))
+
+
+### Bug Fixes
+
+* 系统全屏 ([40f43c0](https://github.com/juicecube/mlz-video/commit/40f43c0b667279be6400a084af2920aa189b2ce5))
+* privacy ([5f3f474](https://github.com/juicecube/mlz-video/commit/5f3f4742124c8898c537c288266e9ddc09676018))
+
 ### [1.1.1](https://github.com/juicecube/mlz-video/compare/v1.1.0...v1.1.1) (2021-08-09)
 
 
