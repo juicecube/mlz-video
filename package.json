@@ -1,6 +1,6 @@
 {
   "name": "@mlz/video",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "```tsx     <Player         ref={videoRef}         src={videoUrl}         onPause={handleVideoonPause}         onPlay={handleVideoPlay}         poster={videoImgUrl}         onTouch={handleVideoTouch}         progressStyle={fullscreen ? {} : progressStyle}         fullscreen={fullscreen}     /> ```",
   "keywords": [
     "video",
