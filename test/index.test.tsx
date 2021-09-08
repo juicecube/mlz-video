@@ -30,11 +30,6 @@ export const Test = () => {
     setFullscreen(true);
   };
 
-  // 非全屏下 进度条的长度需减去swiper的navigation
-  const progressStyle = {
-    width: 'calc(100% - 24px - 16px - 16px - 70px - 16px - 20px)',
-  };
-
   const handleSystemFullscreen = () => {
     console.log('调用方 handleSystemFullscreen');
     setState(state + 1);
@@ -59,7 +54,7 @@ export const Test = () => {
         onPlay={handleVideoPlay}
         poster={videoImgUrl}
         onTouch={handleVideoTouch}
-        progressStyle={fullscreen ? {} : progressStyle}
+        hasPagination={!fullscreen}
         fullscreen={fullscreen}
       />
 

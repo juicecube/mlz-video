@@ -88,17 +88,21 @@
 }
 
 .mlz-controller {
-    display: flex;
-    align-items: center;
     visibility: visible;
     opacity: 1;
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 56px 0 24px 32px;
     transition: visibility 0.1s, opacity 0.1s;
     background: linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+
+    .mlz-controller-content {
+      margin: 0 32px;
+      display: flex;
+      align-items: center;
+      padding: 56px 0 24px 0;
+    }
 
     .mlz-controller-playing {
         @extend .mlz-controller-com, .mlz-controller-btn;
@@ -120,6 +124,7 @@
 
     .mlz-controller-progress {
         display: flex;
+        flex: 1;
         align-items: center;
         outline: none;
         position: relative;
@@ -128,8 +133,6 @@
         padding: 0;
         height: 4px;
         border-radius: 4px;
-        // width: calc(100% - 32px - 48px - 32px - 16px - 140px - 32px);
-        width: 426px;
 
         .mlz-controller-slider {
             flex: auto;
@@ -233,6 +236,7 @@
     }
     
     .mlz-controller-timer {
+        width: 144px;
         font-size: 24px;
         line-height: 44px;
         color: #fff;
@@ -240,6 +244,7 @@
 
     .mlz-controller-systme-fullscreen {
       margin-left: 14px;
+      width: 48px;
 
       img {
         width: 48px;

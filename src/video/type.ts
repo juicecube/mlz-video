@@ -55,6 +55,7 @@ export interface IPlayerProps {
     fullscreen?:boolean; // 全屏
     onSystemFullscreen?:() => void; // 点击打开/关闭系统全屏
     hasSystemFullscreen?:boolean; // 系统全屏
+    hasPagination?:boolean; // controller区域是否需要预留swiper的pagination
 }
 
 export interface ControllerProps {
@@ -67,6 +68,7 @@ export interface ControllerProps {
     progressStyle?:CSSProperties;
     onSystemFullscreen?:() => void; // 点击打开/关闭系统全屏
     hasSystemFullscreen?:boolean; // 是否存在系统全屏按钮
+    hasPagination?:boolean; // controller区域是否需要预留swiper的pagination
 }
 
 export interface ProgressProps {

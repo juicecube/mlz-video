@@ -11,7 +11,7 @@ import { Bezel } from './component/bezel';
 import './index.scss';
 
 export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
-  const { preload = 'metadata', poster, src, children, className, onDurationchange, onPlay, onPause, onTouch, progressStyle, fullscreen, hasSystemFullscreen = false, onSystemFullscreen, ...rest } = props;
+  const { preload = 'metadata', poster, src, children, className, onDurationchange, onPlay, onPause, onTouch, progressStyle, fullscreen, hasSystemFullscreen = false, onSystemFullscreen, hasPagination = false, ...rest } = props;
   const videoRef = useRef<any>(null);
   const timerRef = useRef<any>(null);
 
@@ -338,6 +338,7 @@ export const Player = forwardRef<VideoRef, IPlayerProps>((props, ref) => {
         onSeekingTime={handleSeekingTime}
         onSeek={handleSeek}
         state={state}
+        hasPagination={hasPagination}
         onForward={handleForward}
         onPlay={handlePlay}
         onPause={handlePause}

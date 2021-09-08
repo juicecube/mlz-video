@@ -8,7 +8,7 @@ import { Progress } from './progress';
 import { Timer } from './timer';
 import { SystemFullscreen } from './systemFullscreen';
 
-export const Controller:FC<ControllerProps> = ({ state, onPlay, onPause, onSeekingTime, onSeek, onForward, progressStyle, hasSystemFullscreen, onSystemFullscreen }) => {
+export const Controller:FC<ControllerProps> = ({ state, onPlay, onPause, onSeekingTime, onSeek, onForward, progressStyle, hasSystemFullscreen, onSystemFullscreen, hasPagination }) => {
   const handlePlay = () => {
     onPlay && onPlay();
   };
@@ -69,17 +69,23 @@ export const Controller:FC<ControllerProps> = ({ state, onPlay, onPause, onSeeki
       className="mlz-controller"
       style={style}
     >
-      {renderBtn()}
-      <Progress
-        onSeekingTime={handleSeekingTime}
-        onSeek={handleSeek}
-        state={state}
-        onForward={handleForward}
-        progressStyle={progressStyle}
-      />
-      <Timer state={state} />
-      {hasSystemFullscreen ? <SystemFullscreen
-        onSystemFullscreen={handleSystemFullscreen} /> : null}
+      <div
+        className="mlz-controller-content"
+        id="mlz-controller-content"
+        // 在swiper里的播放器，非全屏模式下，controller区域需要预留swiper的pagination
+        style={hasPagination ? { margin: '0 60px 0 16px' } : {}}>
+        {renderBtn()}
+        <Progress
+          onSeekingTime={handleSeekingTime}
+          onSeek={handleSeek}
+          state={state}
+          onForward={handleForward}
+          progressStyle={progressStyle}
+        />
+        <Timer state={state} />
+        {hasSystemFullscreen ? <SystemFullscreen
+          onSystemFullscreen={handleSystemFullscreen} /> : null}
+      </div>
     </div>
   );
 };
